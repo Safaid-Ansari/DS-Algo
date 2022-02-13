@@ -1,0 +1,263 @@
+package Queue;
+
+public class Node <T>{
+
+
+		T data;
+		public Node<T>next;
+		
+		public Node(T data )
+		{
+		 this.data=data;
+//		 this.next=next;
+		}
+	
+
+}
+
+package Queue;
+
+public class QueueEmptyException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}
+
+package Queue;
+
+public class QueueFullException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}
+
+package Queue;
+
+public class QueuesDataStructure {
+
+	private int data[];
+	private int front;
+	private int rear;
+	private int size;
+	
+	
+	public QueuesDataStructure()
+	{
+		data=new int[10];
+		front=-1;
+		rear=-1;
+	
+	}
+	
+	public QueuesDataStructure(int capacity)
+	{
+		data=new int[capacity];
+		front=-1;
+		rear=-1;
+	
+	}
+	public int size()
+	{
+		return size;
+	}
+	
+	public boolean IsEmpty()
+	{
+		 return size==0;
+		
+	}
+	
+	
+	public int front() throws QueueEmptyException
+	{
+		if(size==0)
+		{
+			throw new QueueEmptyException();
+		}
+		return data[front];
+	}
+	
+	public void enQueue(int elem) //throws QueueFullException
+	{
+		if(size==data.length)
+		{
+//			throw new QueueFullException();
+			
+			doublecapacity();
+		}
+		if(size==0)
+		{
+			front=0;
+		}
+//		rear++;
+//		if(rear==data.length)
+//		{
+//			rear=0;
+//		}
+		rear=(rear+1) % data.length;
+		data[rear]=elem;
+		size++;
+	}
+	
+      private void doublecapacity() {
+	
+		
+		int temp[]=data;
+		data=new int[2*temp.length];
+		int index=0;
+		for(int i=front;i<temp.length;i++)
+		{
+			data[index++]=temp[i];
+		}
+		for(int i=0;i<front-1;i++)
+		{
+			data[index++]=temp[i];
+		}
+		front=0;
+		rear=temp.length-1;
+		
+		
+	}
+
+      public int deQueue() throws QueueEmptyException
+    	{
+    		if(size==0)
+    		{
+    			throw new QueueEmptyException();
+    		}
+    		int temp=data[front];
+//    		front++;
+//    		if(front==data.length)
+//    		{
+//    			front=0;
+//    		}
+    		front=(front+1) % data.length;
+    		size--;
+    		if(size==0)
+    		{
+    			front=-1;
+    			rear=-1;	
+    		}
+    		return temp;
+    	}
+  	
+	
+}
+
+package Queue;
+
+public class QueueUse {
+
+	public static void main(String[] args) {
+	
+		
+		
+//		QueuesDataStructure q=new QueuesDataStructure(3);
+		QueueUsingLL<Integer> q=new QueueUsingLL<>();
+
+		int arr[]= {10,20,30,40,50,60,70,80,90};
+		
+		for(int elem:arr)
+		{
+			q.enQueue(elem);
+//			try {
+//				
+//		} catch (QueueFullException e) {
+//				
+//			e.printStackTrace();
+//			}
+		}
+		
+		while(! q.IsEmpty())
+		{
+			try {
+				System.out.println(q.deQueue());
+			} catch (QueueEmptyException e) {
+//				
+//				e.printStackTrace();
+				
+			}
+		}
+
+	}
+
+}
+
+package Queue;
+
+public class QueueUsingLL <T> {
+	
+	private Node<T> front;
+	private Node<T> rear;
+	private int size;
+	
+	
+	public QueueUsingLL()
+	{
+		front=null;
+		rear=null;
+		size=0;
+	}
+	
+	public int size()
+	{
+		return size;
+	}
+	
+	public boolean IsEmpty()
+	{
+		return size==0;
+	}
+	
+	public void enQueue(T elem)
+	{
+		Node<T> newNode=new Node<T>(elem);
+		size++;
+		if(rear==null || front==null)
+		{
+			rear=newNode;
+			front=newNode;
+		}
+		else
+		{
+			rear.next=newNode;
+			rear=newNode;
+			
+		}
+	}
+	
+	
+	public T front() throws QueueEmptyException
+	{
+		if(front==null)
+		{
+			throw new QueueEmptyException();
+		}
+		return front.data;
+	}
+	
+	
+
+	public T deQueue() throws QueueEmptyException
+	{
+		if(front == null)
+		{
+			throw new QueueEmptyException();
+		}
+		T temp=front.data;
+		front=front.next;
+		if(front==null)
+		{
+			rear=null;
+		}
+		size--;
+		return temp;
+	}
+	
+}

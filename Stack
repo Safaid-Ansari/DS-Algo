@@ -1,0 +1,252 @@
+package StackDataStructure;
+
+public class Node <T>{
+
+	T data;
+	public Node<T> next;
+	
+	public Node(T data)
+	{
+	 this.data=data;
+	}
+}
+
+package StackDataStructure;
+
+public class StackEmptyException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}
+
+package StackDataStructure;
+
+public class StackFullException extends Exception {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+}
+
+package StackDataStructure;
+
+public class StackFunction {
+
+	
+	private int data[];
+	private int topIndex;
+	
+	public StackFunction()
+	{
+		data=new int[5];
+		topIndex=-1;
+	}
+	
+	
+	public int Size()
+	{
+		return topIndex+1;
+	}
+	
+	public boolean IsEmpty()
+	{
+	 return topIndex == -1;
+	}
+	
+	public void Push(int elem) //throws StackFullException
+	{
+		if(topIndex==data.length-1)
+		{
+//			StackFullException e=new StackFullException();
+//			throw e;
+//			throw new StackFullException();
+			// throw exception
+			DoubleCapacity();
+		}
+		 topIndex++;
+		 data[topIndex]=elem;
+		 
+	}
+	
+	
+	private void DoubleCapacity() {
+		System.out.println("Double Capacity Call ");
+		int temp[]=data;
+		data=new int[2*temp.length];
+		for(int i=0;i<temp.length;i++)
+		{
+			data[i]=temp[i];
+		}
+		
+	}
+
+	public int Top() throws StackEmptyException
+	{
+		if(topIndex == -1)
+		{
+		   	throw new StackEmptyException();
+		}
+		return data[topIndex];
+	}
+	
+	public int Pop() throws StackEmptyException
+	{
+		if(topIndex == -1)
+		{
+			throw new StackEmptyException();
+		}
+		int temp=data[topIndex];
+		topIndex--;
+		return temp;
+	}
+}
+
+package StackDataStructure;
+
+public class StackUsingLL <T>{
+	
+	private Node<T> head;
+	private int size;
+	
+	public StackUsingLL()
+	{
+		head=null;
+		size=0;
+	}
+	
+	public int size()
+	{
+		return size;
+	}
+	public boolean isEmpty()
+	{
+		return size==0;
+	}
+	
+	public void push(T elem)
+	{
+		Node<T> newNode =new  Node<T>(elem);
+		newNode.next=head;
+		head=newNode;
+		size++;
+	}
+	
+	public T top() throws StackFullException
+	{
+		if(head==null)
+		{
+			throw new StackFullException();
+		}
+			
+		return head.data;
+	}
+	
+	public T pop() throws StackFullException
+	{
+		if(head==null)
+		{
+			throw new StackFullException();
+			
+		}
+		T temp=head.data;
+		head=head.next;
+		size--;
+		return temp;
+	}
+}
+
+package StackDataStructure;
+
+import java.util.LinkedList;
+import java.util.Queue;
+
+public class StackUsingQueue {
+
+	
+	
+	private Queue<Integer> queue=new LinkedList<>();
+	private Queue<Integer> tempQueue=new LinkedList<>();
+	private int top;
+	
+	public int top()
+	{
+		return top;
+	}
+	
+	public boolean isEmpty()
+	{
+		return queue.size()==0;
+	}
+	public void push(int data)
+	{
+		queue.add(data);
+		top=data;
+	}
+	public int pop()
+	{
+		while(queue.size()!=1)
+		{
+			top=queue.poll();
+			tempQueue.add(top);
+		}
+		int ans=queue.poll();
+		Queue<Integer> temp=queue;
+		queue=tempQueue;
+		tempQueue=temp;
+		
+		return ans;
+	}
+	
+	
+	public static void main(String[] args)
+	{
+		StackUsingQueue stack=new StackUsingQueue();
+		
+		stack.push(12);
+		stack.push(45);
+		stack.push(65);
+		stack.push(32);
+		stack.push(445);
+		stack.push(654);
+		
+		
+			System.out.println(stack.pop());
+			System.out.println(stack.top());
+			System.out.println(stack.isEmpty());
+			System.out.println(stack.pop());
+			System.out.println(stack.top());
+			
+		
+	}
+	
+}
+
+package StackDataStructure;
+
+public class UseOfStackFunctions {
+
+	public static void main(String[] args) throws StackFullException, StackEmptyException {
+		
+//       StackFunction sf=new StackFunction();
+		
+		StackUsingLL<Integer> sl=new StackUsingLL<Integer>();
+       int arr[]= {12,4,6,82,45,89,54,786,43,54};
+       
+       for(int i=0;i<arr.length;i++)
+       {
+    	   sl.push(arr[i]);
+       }
+       
+       while(!sl.isEmpty())
+       {
+    	   System.out.println(sl.pop());
+       }
+       System.out.print(sl.isEmpty());
+	}
+
+}

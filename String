@@ -1,0 +1,524 @@
+package StringProgram;
+
+import java.util.Scanner;
+
+public class AllSubstrings {
+	
+public static void printSubstrings(String str)
+{
+	for(int i=0;i<str.length();i++)
+	{
+		for(int j=i+1;j<=str.length();j++)
+		{
+			System.out.println(str.substring(i, j));
+		}
+	}
+}
+
+	public static void main(String[] args) {
+	
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+		
+		printSubstrings(str);
+
+	}
+
+}
+
+package StringProgram;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class CheckPermutaion {
+
+	public static boolean isPermutation(String str1, String str2)
+	{
+		    int n1 = str1.length();
+		    int n2 = str2.length();
+		 
+		    // If length of both strings is not same,
+		    // then they cannot be Permutation
+		    if (n1 != n2)
+		    return false;
+		    char ch1[] = str1.toCharArray();
+		    char ch2[] = str2.toCharArray();
+		 
+		    // Sort both strings
+		    Arrays.sort(ch1);
+		    Arrays.sort(ch2);
+		 
+		    // Compare sorted strings
+		    for (int i = 0; i < n1; i++)
+		    if (ch1[i] != ch2[i])
+		        return false;
+		 
+		    return true;
+	}
+	
+	public static void main(String[] args) {
+		Scanner s= new Scanner(System.in);
+		String str1= s.nextLine();
+		String str2=s.nextLine();
+		
+		boolean result=isPermutation(str1,str2);
+		
+		System.out.print(result);
+		
+
+	}
+
+}
+
+package StringProgram;
+
+import java.util.Scanner;
+
+public class CountWords {
+	
+	    static final int OUT = 0;
+	    static final int IN = 1;
+		public static int countWords(String str) {	
+	        
+	        int state = OUT;
+	        int wc = 0;  // word count
+	        int i = 0;
+	         
+	        // Scan all characters one by one
+	        while (i < str.length())
+	        {
+	            // If next character is a separator, set the
+	            // state as OUT
+	            if (str.charAt(i) == ' ' || str.charAt(i) == '\n'
+	                    || str.charAt(i) == '\t')
+	                state = OUT;
+	                 
+	      
+	            // If next character is not a word separator
+	            // and state is OUT, then set the state as IN
+	            // and increment word count
+	            else if (state == OUT)
+	            {
+	                state = IN;
+	                ++wc;
+	            }
+	      
+	            // Move to next character
+	            ++i;
+	        }
+	        return wc;
+	    }
+
+
+	public static void main(String[] args) {
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+		
+		int result=countWords(str);
+		System.out.print(result);
+	}
+
+}
+
+package StringProgram;
+
+public class EquilibriumIndex {
+	
+	public static int equilibriumIndex(int []arr)
+	{
+		int n=arr.length;
+		int i,j;
+		int leftsum,rightsum;
+		
+		for(i=0;i<n;i++)
+		{
+			
+			//get Left Sum
+			leftsum=0;
+			for(j=0;j<i;j++)
+				leftsum+=arr[j];
+			
+			
+			// get Right Sum
+			rightsum=0;
+			for(j=i+1;j<n;j++)
+				rightsum+=arr[j];
+			
+			if(leftsum==rightsum)
+				return i;
+			
+		}
+		return -1;
+	}
+
+	public static void main(String[] args) {
+		
+		int arr[] = { -7, 1, 5, 2, -4, 3, 0 };
+		int result=equilibriumIndex(arr);
+		System.out.println(result);
+	}
+
+}
+
+package StringProgram;
+
+import java.util.Scanner;
+
+public class GetCompressedString {
+	
+	public static String getCompressedString(String str)
+	{
+		   String ans="";
+
+			int count=1;
+			char prev=' ';
+			for(int i=0;i<str.length();i++) {
+				char current=str.charAt(i);
+				if(i>0&&(prev==current)) {
+					count++;
+
+					continue;
+				}
+				if(count>1) {
+					ans=ans+""+count;
+					count=1;
+
+
+				}
+				ans=ans+current;
+
+				prev=current;
+
+			}
+			if(count>1) {
+				ans=ans+""+count;
+				
+			}
+
+			return ans;
+		}
+	
+	public static void main(String[] args) {
+		
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+		
+		String result=getCompressedString(str);
+        System.out.print(result);
+	}
+
+}
+
+package StringProgram;
+
+public class HighestOccuringCharacter {
+	
+    static final int ASCII_SIZE=256;
+	public static char highestOccuringChar(String str)
+	{
+	    int count[] = new int[ASCII_SIZE];
+	      
+        // Construct character count array from the input
+        // string.
+        int len = str.length();
+        for (int i=0; i<len; i++)
+            count[str.charAt(i)]++;
+      
+        int max = -1;  // Initialize max count
+        char result = ' ';   // Initialize result
+      
+        // Traversing through the string and maintaining
+        // the count of each character
+        for (int i = 0; i < len; i++) {
+            if (max < count[str.charAt(i)]) {
+                max = count[str.charAt(i)];
+                result = str.charAt(i);
+            }
+        }
+      
+        return result;
+
+	}
+	public static void main(String[] args) {
+		
+		String str= "Safaid Ansari";
+		char result=highestOccuringChar(str);
+	}
+
+}
+
+package StringProgram;
+
+import java.util.Scanner;
+
+public class IsSortedBetter {
+	
+public static boolean isSortedBetter(int arr[], int n)
+{
+	if(n==arr.length-1)
+	{
+		return true;
+	}
+	if(arr[n]>arr[n+1])
+	{
+		return false;
+	}
+	
+	boolean isSmallArray=isSortedBetter(arr,n+1);
+	
+	return isSmallArray;
+}
+
+public static void main(String[] args) {
+	Scanner s = new Scanner(System.in);
+	int arr[]= {1,2,3,4,5,6,7,8,9};
+	int n=s.nextInt();
+	
+	System.out.print(isSortedBetter(arr,n));
+	 
+  }
+}
+
+package StringProgram;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.Scanner;
+
+public class RemoveAllOccurrencesOfChar {
+	static BufferedReader br = new BufferedReader (new InputStreamReader (System.in));
+	
+	public static String removeAllOccurrencesOfChar(String str,char ch)
+	{
+		  StringBuilder strBuilder = new StringBuilder();
+	        char[] rmString = str.toCharArray();
+	        for(int i=0; i<rmString.length; i++){
+	            if(rmString[i] == ch){
+
+	            } else {
+	                strBuilder.append(rmString[i]);
+	            }
+	        }
+	        return strBuilder.toString();
+	}
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+		
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+		char x = br.readLine().charAt(0);
+		String result=removeAllOccurrencesOfChar(str,x);
+		System.out.print(result);		
+
+	}
+
+}
+
+package StringProgram;
+
+public class RemoveCharacter {
+	
+	public static String removeCharacter(String str , int ch)
+	{
+		StringBuilder strBuilder=new StringBuilder();
+		char[]rmString =str.toCharArray();
+		for(int i=0;i<rmString.length;i++)
+		{
+			if(rmString[i]==ch)
+			{
+				
+			}
+			else
+				strBuilder.append(rmString[i]);
+		}
+		return strBuilder.toString();
+		
+	}
+
+	public static void main(String[] args) {
+	
+		String dtr="safaid";
+		char c='s';
+		String ans=removeCharacter(dtr,c);
+		System.out.println(ans);
+
+	}
+
+}
+
+package StringProgram;
+
+import java.util.Scanner;
+
+public class RemoveConsecutiveDuplicates {
+	
+	public static String removeConsecutiveDuplicates(String str)
+	{
+
+        if(str.length()<=1)
+           return str;
+       if(str.charAt(0)==str.charAt(1))
+           return removeConsecutiveDuplicates(str.substring(1));
+       else
+           return str.charAt(0) + removeConsecutiveDuplicates(str.substring(1));
+	}
+
+	public static void main(String[] args) {
+	
+      Scanner s=new Scanner(System.in);
+      String str=s.nextLine();
+      String result=removeConsecutiveDuplicates(str);
+      
+      System.out.print(result);
+      
+	}
+
+}
+
+package StringProgram;
+
+public class ReverseEachWord {
+	
+	public static String reverseEachWord(String str)
+	{
+		String ans="";
+		int CurrentWordStart=0;
+		int i=0;
+		for(;i<str.length();i++)
+		{
+			if(str.charAt(i)==' ')
+			{
+				
+				//Reverse Cuurent
+				int CurrentWordEnd=i-1;
+				String reverseWord="";
+				for(int j=CurrentWordStart;j<=CurrentWordEnd;j++) {
+					
+					reverseWord=str.charAt(j)+reverseWord;
+				}
+				//Add it final String(ans)
+				ans+=reverseWord+" ";
+				CurrentWordStart=i+1;		
+			}
+		}
+		int  CurrentWordEnd=i-1;
+		String reverseWord="";
+		for(int j=CurrentWordStart;j<=CurrentWordEnd;j++)
+		{
+           reverseWord=str.charAt(j)+reverseWord;			
+		}
+		
+		// Add it final result(ans)
+        
+		 ans+=reverseWord;
+		 return ans;		 
+		
+	}
+
+	
+	public static void main(String[] args) {
+        
+		String str="Safaid Ansari";
+		reverseEachWord(str);
+
+	}
+
+}
+
+package StringProgram;
+
+import java.util.Scanner;
+
+public class ReverseString {
+	 static int OUT=0;
+	 static int IN=0;
+	
+	public static String reverseString(String str)
+	{
+		String reverseS="";
+     for(int i=0;i<str.length();i++)
+     {
+    	 reverseS=str.charAt(i)+reverseS;
+     }
+      return reverseS;
+	}
+
+	public static void main(String[] args) {
+	
+     Scanner s= new Scanner(System.in);
+     System.out.println("Enter a String ");
+      String str= s.nextLine();
+      String count=reverseString(str);
+      System.out.println(count);
+      
+      
+      
+	}
+
+}
+
+package StringProgram;
+
+import java.util.Scanner;
+
+public class StringPalindrome {
+	
+	public static boolean isPalindrome(String str) {
+		
+	        int l = 0;
+	        int h = str.length()-1;
+	         
+	        // Lowercase string
+	        str = str.toLowerCase();
+	         
+	        // Compares character until they are equal
+	        while(l <= h)
+	        {
+	             
+	            char getAtl = str.charAt(l);
+	            char getAth = str.charAt(h);
+	             
+	            // If there is another symbol in left
+	            // of sentence
+	            if (!(getAtl >= 'a' && getAtl <= 'z'))
+	                l++;
+	             
+	            // If there is another symbol in right
+	            // of sentence
+	            else if(!(getAth >= 'a' && getAth <= 'z'))
+	                h--;
+	             
+	            // If characters are equal
+	            else if( getAtl == getAth)
+	            {
+	                l++;
+	                h--;
+	            }
+	             
+	            // If characters are not equal then
+	            // sentence is not palindrome
+	            else
+	                return false;
+	        }
+	         
+	        // Returns true if sentence is palindrome
+	        return true;   
+	    
+	            
+		}
+
+
+	public static void main(String[] args) {
+		
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+		
+		boolean result=isPalindrome(str);
+		
+		System.out.print(result);
+
+	}
+
+}

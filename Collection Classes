@@ -1,0 +1,563 @@
+package Collection;
+
+import java.util.*;
+
+//Insertion order are preserved 
+//Duplicates values are allowed
+//Initial Capacity 10
+//AraayList are implement set Interface
+public class ArrayListDemo {
+
+	public static void main(String[] args) {
+
+		ArrayList<Integer> a1 = new ArrayList<Integer>(5);
+
+		a1.add(45);
+		a1.add(23);
+		a1.add(56);
+		a1.add(76);
+		a1.add(12);
+		a1.add(90);
+
+		System.out.println(a1.set(4, 109));
+		System.out.println(a1.get(4));
+
+		Iterator<Integer> i1=a1.iterator();
+		while(i1.hasNext())
+		{
+			System.out.println(i1.next());
+		}
+	}
+
+}
+
+package Collection;
+
+import java.util.Arrays;
+
+public class ArraysClass {
+
+	public static void main(String[] args) {
+		
+		int arr[]=new int[] {12,45,21,65,87,90,78};
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			System.out.print(arr[i]+" ");
+		}
+		
+		System.out.println();
+		Arrays.fill(arr,3,5, 786);
+		
+		for(int i=0;i<arr.length;i++)
+		{
+			System.out.print(arr[i]+" ");
+		}
+		
+		System.out.println();
+		Arrays.sort(arr);
+		int x=Arrays.binarySearch(arr, 786);
+		for(int i=0;i<arr.length;i++)
+		{
+			System.out.print(arr[i]+" ");
+		}
+		System.out.print(x);
+
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+// Collections is a Utility Class 
+// Methods of Collections class are static
+
+public class CollectiosClass {
+
+	public static void main(String[] args) {
+		
+		Vector<Integer> v=new Vector<Integer>();
+        
+		v.add(34);
+		v.add(56);
+		v.add(89);
+		v.add(12);
+		v.add(32);
+		
+		System.out.print(v);
+//		Collections.sort(v);
+//		int x=Collections.binarySearch(v, 89);
+//		System.out.println(v);
+//		System.out.println(x);
+//		Collections.swap(v, 1, 4);
+//		System.out.println(v);
+		Collections.shuffle(v);
+		System.out.print(v);
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+public class EnumerationDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Vector<String> v=new Vector<String>();
+		
+		v.add("Delhi");
+		v.add("Uttar Pradesh");
+		v.add("Gurgaon");
+		v.add("Mumbai");
+		
+		System.out.println(v);
+		
+		Enumeration<String> e=v.elements();
+		
+		while(e.hasMoreElements())
+		{
+			System.out.println(e.nextElement());
+		}
+		
+		
+
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+// Insertion order are not preserved 
+// Duplicates values are not allowed
+// Heterogenious data are allowed
+// initial capacity 16
+// Efficient Searching
+// load factor 0.75
+// Constructor(empty);
+// Constructor(object);
+// Constructor(object,load factor);
+// Constructor(collection object);
+// with the help of Hashmap
+
+public class HashSetDemo {
+
+	public static void main(String[] args) {
+		
+		HashSet<String> h=new HashSet<>();
+		
+		h.add("One");
+		h.add("Two");
+		h.add("Three");
+		h.add("Four");
+		h.add("One");
+		h.add("Three");
+		System.out.println(h);
+	
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+public class IteratorDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<Integer> al=new ArrayList<>();
+		
+		for(int i=1;i<=10;i++)
+		{
+			al.add(i);
+		}
+		System.out.println(al);
+		
+		Iterator<Integer> it=al.iterator();
+		
+		while(it.hasNext())
+		{
+			Integer i=(Integer)it.next();
+			if(i>3 && i<7)
+            it.remove();			
+		}
+		System.out.println(al);
+		
+		
+
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+//Insertion order are preserved 
+//Duplicates values are not allowed
+//Heterogenious data are allowed
+//initial capacity 16
+//Efficient Searching
+//load factor 0.75
+//Constructor(empty);
+//Constructor(object);
+//Constructor(object,load factor);
+//Constructor(collection object);
+// it implements with the help of Hashmap and doublyLinkedlIST
+public class LinkedHashSetDemo {
+
+	public static void main(String[] args) {
+
+    LinkedHashSet<String> lh=new LinkedHashSet<>();
+    
+    lh.add("Safaid");
+    lh.add("Sameer");
+    lh.add("Shuaib");
+    lh.add("Shuhail");
+    lh.add("Safaid");
+    lh.add("Shuaib");
+    
+    System.out.println(lh);
+
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+// Insertion order are preserved 
+// Duplicates values are allowed
+// Initial Capacity 10
+// linked list are implement set Interface
+
+
+
+public class LinkedListDemo {
+
+	public static void main(String[] args) {
+		
+		LinkedList<String> list=new LinkedList<String>();
+		list.addFirst("Safaid");
+		list.add(1, "Ahmad");
+		list.addLast("Ansari");
+		list.add("Saif Malik");
+//		System.out.println(list.getFirst());
+//		System.out.println(list.get(1));
+//		System.out.println(list.getLast());
+		
+//
+		Iterator<String> i1=list.iterator();
+		while(i1.hasNext())
+		{
+			System.out.println(i1.next());
+		}
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+public class ListIteratorDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		ArrayList<String> li=new ArrayList<String>();
+		
+		li.add("Safaid");
+		li.add("Sameer");
+		li.add("Shuaib");
+		li.add("Suhail");
+		System.out.println(li);
+		
+		ListIterator<String> lit=li.listIterator();
+		
+		while(lit.hasNext())
+		{
+			String s=(String)lit.next();
+			if(s.equals("Safaid"))
+			    lit.set("Safaid Ansari");
+			else if(s.equals("Shuaib"))
+				lit.set("Shuaib Ansari");
+			else if(s.equals("Suhail"))
+				lit.remove();
+			else if(s.equals("Sameer"))
+				lit.add("Saif Malik");
+		}
+		System.out.println(li);
+		
+
+	}
+
+}
+
+package Collection;
+
+import java.util.HashMap;
+
+// Map is a a not child Interface of Collection FrameWork
+// Whenever we want to store group of key-Value pair we use MAP
+// Key-Value both must be object 
+// value can repeat but key are not  
+
+// HashMap Only contains value based on the key
+// HashTable data structure is Used 
+// it contains only unique elements 
+// it may have one null key and  multiple null values
+
+// HashTable is a thread safe version of HashMap
+// HAshTable doesn't allow null value unlike HashMap
+
+// LinkedHashMap  subclass of HashMap
+// Insertion Order is Maintained 
+// Slower Insertion and Deletion 
+// Hybrid data structure is Used (Doubly Linked List and HashTable)
+
+
+public class MapDemo {
+
+	public static void main(String[] args) {
+		
+
+		 HashMap<Integer , String > hm=new HashMap<Integer,String>();
+		 hm.put(null, null);
+		 hm.put(1, "Safaid");
+		 hm.put(2, "Sameer");
+		 hm.put(null, null);
+		 hm.put(6, null);
+		 hm.put(7, null);
+		 hm.put(1, "Ansari");
+		 hm.put(3, "Shuaib");
+		 hm.put(4, "Saif");
+		 hm.put(5, "Nadeem");
+		 
+		 System.out.print(hm);
+		 System.out.println(hm.entrySet());
+		 
+		 
+		 
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+// Child Interface of SortedSet
+
+public class NavigableSet {
+
+	public static void main(String[] args) {
+
+		TreeSet<String> t = new TreeSet<>();
+
+		t.add("A");
+		t.add("C");
+		t.add("F");
+		t.add("G");
+		t.add("B");
+		System.out.print(t + " ");
+
+		System.out.println(t.ceiling("C"));
+		System.out.println(t.floor("M"));
+		System.out.println(t.higher("F"));
+		System.out.println(t.lower("D"));
+		System.out.println(t.comparator());
+
+	}
+
+}
+
+package Collection;
+
+import java.util.PriorityQueue;
+
+// Child Interface of Collection 
+// Null values are not allowed
+// Duplicates values are allowed
+// Heterogeneous elements are allowed
+// PriorityBlockingQueue is a Thread Safe
+// Initial Capacity 11 
+public class QueueDemo {
+
+	public static void main(String[] args) {
+		
+		PriorityQueue<String> pq=new PriorityQueue<String>();
+		
+		pq.offer("A");
+		pq.offer("B");
+		pq.offer("D");
+		pq.offer("F");
+		pq.offer("M");
+		pq.offer("N");
+		
+		System.out.print(pq);
+		
+		System.out.print(pq.poll());
+		System.out.print(pq.poll());
+		System.out.print(pq.poll());
+		
+		System.out.println(pq);
+		System.out.print(pq.peek());
+		
+		
+
+	}
+
+}
+
+package Collection;
+
+import java.util.*;
+
+// SortedSet is a Child Interface of Set Interface
+// Duplicates are not allowed 
+// Elements are sorted Order
+// Sorted order are implements  6 new Methods
+// Difference  Set And SortedSet  are .. 
+// In Set : Order is not important
+// In SortedSet : Order is Important in SOme logical Order
+
+public class SortedSetDemo {
+
+	public static void main(String[] args) {
+		
+		TreeSet<String> t=new TreeSet<>();
+		
+		t.add("Safaid");
+		t.add("Saif");
+		t.add("Nadeem");
+		t.add("Faisal");
+		t.add("Sameer");
+		System.out.print(t+" ");
+		System.out.println(t.first());
+		System.out.println(t.last());
+		System.out.println(t.headSet("Nadeem"));
+		System.out.println(t.tailSet("Nadeem"));
+		System.out.println(t.subSet("Nadeem","Sameer"));
+		
+
+	}
+
+}
+
+package Collection;
+
+import java.util.TreeMap;
+
+// SortedMap child Interface of Map 
+// NavigableMap child Interface of SortedMap
+// TreeMap Implements NavigableMap
+// Sorted Order is Maintained 
+// it is not thread safe 
+// null value are not allowed
+// A Red Black Tree Based NavigableMap Implementation 
+public class TreeMapDemo {
+
+	public static void main(String[] args) {
+		
+
+		TreeMap<Integer , String > tm=new TreeMap<Integer, String >();
+		
+		tm.put(1, "Safaid ");
+		tm.put(2,"Sameer");
+		tm.put(3, "Saif");
+		tm.put(4, "Nadeem");
+		tm.put(5, "Shuaib");
+		
+		System.out.println(tm);
+		tm.replace(2, "Malik");
+		System.out.println(tm);
+		
+		
+		
+	}
+
+}
+
+package Collection;
+
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.TreeSet;
+
+// If you want to custom Sorting then Implements camparator Interface
+// camparator Interface  Define Campare Method
+// If you want to default Natural Sorting then Implements Camparable Interface 	
+// Heterogineus Are not allowed  
+
+class  Book{
+	private String title;
+	private double price;
+	
+	public Book(String title, double price)
+	{
+		this.title=title;
+		this.price=price;
+	}
+	
+	public String getTitle()
+	{
+		return title;
+	}
+	public double getPrice()
+	{
+		return price;
+	}
+}
+
+class MyBook implements Comparator<Object>{
+
+	@Override
+	public int compare(Object o1, Object o2) {
+		
+		Book book1=(Book)o1;
+		Book book2=(Book)o2;
+		if(book1.getPrice() < book2.getPrice())
+			return (-1); 
+		else
+		   return (1);
+	}
+	
+}
+public class TreeSetDemo {
+
+	public static void main(String[] args) {
+		Book b1,b2,b3;
+		b1=new Book("PHP",300.45);
+		b2=new Book("JAVA", 500.20);
+		b3=new Book("C",200.00);
+		
+		TreeSet<Book> T=new TreeSet<>(new MyBook());
+		T.add(b1);
+		T.add(b2);
+		T.add(b3);
+		Book b;
+		
+		Iterator<Book> it=T.iterator();
+		while(it.hasNext())
+		{
+			b=(Book)it.next();
+			System.out.println(b.getTitle()+" "+b.getPrice() );
+		}
+		
+		
+		
+		
+
+	}
+
+}

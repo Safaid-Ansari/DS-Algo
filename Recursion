@@ -1,0 +1,476 @@
+package RecursionProblem;
+
+import java.util.Scanner;
+
+public class AddStars {
+	
+	public static String addStars(String str)
+	{
+		if(str.length()<=1)
+		{
+			return str;
+		}
+		if(str.charAt(0)==str.charAt(1))
+			return str.charAt(0)+"*"+addStars(str.substring(1));
+		return str.charAt(0)+addStars(str.substring(1));
+	}
+	public static void main(String[] args) {
+		
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+		System.out.print(addStars(str));
+	}
+
+}
+
+package RecursionProblem;
+
+public class BinarySearch {
+	public  static int binarySearch(int a[],int si, int ei,int x)
+	{
+		if(si>ei)
+		{
+			return -1;
+		}
+		int midIndex=si+(ei-si)/2;
+		
+		if(a[midIndex]==x)
+		{
+			return midIndex;
+		}
+		else if(a[midIndex]<x)
+		{
+			return binarySearch(a,midIndex+1,ei,x);
+		}
+		else
+		{
+			return binarySearch(a,si,midIndex-1,x);
+		}
+	}
+	
+	public static void main(String[] args) {
+		int a[]= {1,2,3,4,5,6,7,8,9};
+		System.out.print(binarySearch(a,0,a.length-1,9));
+
+	}
+
+}
+
+package RecursionProblem;
+
+import java.util.Scanner;
+
+public class CheckAB {
+	public static boolean checkAB(String input)
+	{
+		 if (input.length()==0) 
+		        return true;
+		    if (input.charAt(0) != 'a')
+		        return false;
+		    if (input.length() >= 3 && "abb".equals(input.substring(0,3)))
+		        return checkAB(input.substring(3));
+		    else
+		        return checkAB(input.substring(1));
+		        
+	}
+
+	public static void main(String[] args) {
+	
+		Scanner s =new Scanner(System.in);
+		String str=s.nextLine();
+		System.out.print(checkAB(str));
+
+	}
+
+}
+
+package RecursionProblem;
+
+import java.util.Scanner;
+
+class ConvertStringToInt {
+
+	public static int convertStringToInt(String str)
+	{
+		if(str.length()==1)
+			return str.charAt(0)-'0';
+		
+		double y=convertStringToInt(str.substring(1));
+		
+		double x=str.charAt(0)-'0';
+		x=x*Math.pow(10, str.length()-1)+y;
+		
+		return (int)(x);
+	}
+	public static void main(String[] args) {
+
+     Scanner s= new Scanner(System.in);
+     
+     String str=s.nextLine();
+     
+     System.out.print(convertStringToInt(str));
+	}
+
+}
+
+package RecursionProblem;
+
+import java.util.Scanner;
+
+public class CountZeros {
+
+	public static int countZeros(int n)
+	{
+		if(n==0)
+		{
+			return 0;
+		}
+		if(n<10) //this is actual base case
+		{
+			return 0;
+		}
+		else if(n%10==0)
+		{
+			return 1+countZeros(n/10);
+		}
+		return countZeros(n/10);
+	}
+	
+	public static void main(String[] args) {
+
+      Scanner s = new Scanner(System.in);
+    		  
+      int n=s.nextInt();
+      System.out.print(countZeros(n));
+
+	}
+
+}
+
+package RecursionProblem;
+
+import java.util.Scanner;
+
+public class FindGeomatricSum {
+	
+	public static double findGeomatricSum(int n)
+	{
+		if(n==0)
+		{
+			return 1;
+		}
+		double sum=(1/(Math.pow(2, n)));
+		return findGeomatricSum(n-1)+sum;
+	}
+	public static void main(String[] args) {
+
+     Scanner s=new Scanner(System.in);
+     int n=s.nextInt();
+     System.out.print(findGeomatricSum(n));
+
+	}
+
+}
+
+package RecursionProblem;
+
+import java.util.Scanner;
+
+public class IsStringPalindrome {
+	
+	public static boolean IspalRec(String str,int s,int e)
+	{
+		
+		 // If there is only one character
+		if(s==e)
+		{
+			return true;
+		}
+		
+		 // If first and last
+        // characters do not match
+		if((str.charAt(s)) != (str.charAt(e)))
+			return false;
+		
+		// If there are more than
+        // two characters, check if
+        // middle substring is also
+        // palindrome or not.
+		if(s<e+1)
+		 
+		return IspalRec(str,s+1,e-1);
+		return true;
+		
+	}
+	
+	public static boolean isStringPalindrome(String str)
+	{
+		int n=str.length();
+		if(n==0)
+			return true;
+		return IspalRec(str,0,n-1);
+	}
+
+	public static void main(String[] args) {
+		
+		Scanner s=new Scanner(System.in);
+		String str=s.nextLine();
+	    System.out.print(isStringPalindrome(str));
+	    
+
+	}
+
+}
+
+package RecursionProblem;
+
+public class MergeSort {
+
+	public static void merge(int s1[], int s2[], int s[])
+	{
+		int i=0,j=0,k=0;
+		while(i<s1.length && j<s2.length)
+		{
+			if(s1[i]<s2[j])
+			{
+			   s[k]=s1[i];
+			   i++;
+			   k++;
+			}
+			else
+			{
+				s[k]=s2[j];
+				k++;
+				j++;
+				
+			}
+		}
+		if(i<s1.length)
+		{
+			while(i<s1.length)
+			{
+				s[k]=s1[i];
+				i++;
+				k++;
+			}
+		}
+		if(j<s2.length)
+		{
+			while(j<s2.length)
+			{
+				s[k]=s2[j];
+				k++;
+				j++;
+			}
+		}
+	}
+	public static void mergeSort(int a[])
+	{
+		if(a.length<=1)
+		{
+			return ;
+		}
+		int b[]=new int[a.length/2];
+		int c[]=new int[a.length-b.length];
+		
+		for(int i=0;i<a.length/2;i++)
+		{
+			b[i]=a[i];
+		}
+		for(int i=a.length/2;i<a.length;i++)
+		{
+			c[i-a.length/2]=a[i];
+		}
+		
+		mergeSort(b);
+		mergeSort(c);
+		merge(b,c,a);
+	}
+    public static void main(String[] args){
+       
+        int a[]={10,4,5,9,8,6,12,11,7};
+        mergeSort(a);
+        for(int i=0;i<a.length;i++){
+            System.out.print(a[i]+" ");
+        }
+    }
+
+}
+
+package RecursionProblem;
+
+public class QuickSort {
+	
+	
+	 public static int partition(int a[],int si,int ei){
+	        int pivotElement=a[si];
+	        int smallerNumCount=0;
+	        for(int i=si+1;i<=ei;i++){
+	            if(a[i]<pivotElement){
+	                smallerNumCount++;
+	            }
+	        }
+	        int temp=a[si+smallerNumCount];
+	        a[si+smallerNumCount]=pivotElement;
+	        a[si]=temp;
+	        int i=si;
+	        int j=ei;
+	        while(i<j){
+	            if(a[i]<pivotElement){
+	                i++;
+	            }else if(a[j]>=pivotElement){
+	                j--;
+	            }else{
+	                 temp=a[i];
+	                a[i]=a[j];
+	                a[j]=temp;
+	                i++;
+	                j--;
+	            }
+	        }
+	        return si+smallerNumCount;
+	    }
+	    public static void quickSort(int a[],int si,int ei){
+	        if(si>=ei){
+	            return;
+	        }
+	        int pivotIndex=partition(a,si,ei);
+	        quickSort(a,si,pivotIndex-1);
+	        quickSort(a,pivotIndex+1,ei);
+	    }
+
+	public static void main(String[] args) {
+		
+		  int a[]={10,4,5,9,8,6,12,11,7};
+	        quickSort(a,0,a.length-1);
+	        for(int i=0;i<a.length;i++){
+	            System.out.print(a[i]+" ");
+	        }
+
+	}
+
+}
+
+package RecursionProblem;
+
+public class ReplaceCharacter {
+	
+	
+	public static String replaceChar(String str, char a, char b)
+	{
+		if(str.length()==0)
+		{
+			return str;
+		}
+		String smallOutput=replaceChar(str.substring(1),a,b);
+		if(str.charAt(0)==a)
+		{
+			return b+smallOutput;
+		}
+		else
+		{
+			return str.charAt(0)+smallOutput;
+		}
+	}
+        
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println(replaceChar("abcxdxex",'x','y'));
+	}
+
+}
+
+package RecursionProblem;
+
+public class ReplacePi {
+	
+	public static String replacePi(String s)
+	{
+		if(s.length()<=1)
+		{
+			return s;
+		}
+		if(s.charAt(0)=='p' && s.charAt(1)=='i')
+		{
+			//call recursion on String length	n-2
+			
+			String smallOutput=replacePi(s.substring(2));
+	        return "3.14"+smallOutput;
+		}else
+		{
+		   // call recursion on String length n-1
+			
+			String smallOutput=replacePi(s.substring(1));
+			return s.charAt(0)+smallOutput;
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		System.out.print(replacePi("apiapiapiapipii"));
+		
+
+	}
+
+}
+
+package RecursionProblem;
+
+import java.util.Scanner;
+
+public class SumOfDigits {
+
+	public static int sumOfDigits(int n)
+	{
+		if(n==0)
+			return 0;
+		return(n%10+sumOfDigits(n/10));
+	}
+	public static int multiplyTwoNumber(int m, int n)
+	{
+		if(m==0 || n==0)
+			return 0;
+		return m+multiplyTwoNumber(m,n-1);
+	}
+	public static void main(String[] args) {
+		
+	Scanner s=new Scanner(System.in);
+	int m=s.nextInt();
+	int n=s.nextInt();
+	//System.out.print(sumOfDigits(n));
+	System.out.print(multiplyTwoNumber(m,n));
+
+	}
+
+}
+
+package RecursionProblem;
+
+import java.util.Scanner;
+
+public class TowerOfHanoi {
+	
+	public static void TOH(int disks,char source, char auxiliary, char destination)
+	{
+		if(disks==0)
+			return;
+		if(disks==1)
+		{
+			System.out.println("move 1st disk from "+source+" to "+destination);
+			return;
+		}
+		TOH(disks-1,source,destination,auxiliary);
+		System.out.println("move "+disks+"th disks from "+source+" to "+destination);
+		TOH(disks-1,auxiliary,source,destination);
+	}
+
+	public static void main(String[] args) {
+
+   Scanner s=new Scanner(System.in);
+   int n=s.nextInt();
+   TOH(n,'a','b','c');
+
+	}
+
+}
